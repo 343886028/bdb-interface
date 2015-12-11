@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+                value="[%p] %d{yyyy-MM-dd HH:mm:ss} [%l] %m%n"/>
+ <!-- 
+            <param name="ConversionPattern"
+                value="%-d{yyyy-MM-dd HH:mm:ss} [%c]-[%p] %m%n"/>
+          <param name="ConversionPattern"
+                value="%p - %C{1}.%M(%L) | %m%n"/>-->
+        </layout>
+    </appender>
+
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/logs/log4j.log"/>
+		<param name="Append" value="true"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="MaxFileSize" value="500KB"/> 
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="[%p] %d{yyyy-MM-dd HH:mm:ss} [%l] %m%n"/>
+        </layout>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter"> 
+			<param name="LevelToMatch" value="DEBUG"/>  
+	        <param name="acceptOnMatch" value="DEBUG"/>      
+        </filter> 
+    </appender>
+
+    <logger name="org.apache">
+        <level value="debug"/>
+    </logger>
+
+    <logger name="org.hibernate">
+        <level value="debug"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="debug"/>
+    </logger>
+
+	<logger name="org.springframework.aop.framework">
+        <level value="debug"/>
+    </logger>
+
+	<logger name="org.springframework.transaction.interceptor">
+        <level value="debug"/>
+    </logger>
+    
+    <logger name="org.springframework.jms">
+        <level value="debug"/>
+    </logger>
+ 
+   
+	<logger name="com.bdbvip">
+        <level value="debug"/>
+    </logger>
+
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</log4j:configuration>
